@@ -9,6 +9,8 @@ import Login from './src/screen/Login';
 import Register from './src/screen/Register';
 import store from './src/redux/store';
 import { Provider } from 'react-redux';
+import ForgotPassword from './src/screen/ForgotPassword/index';
+import OTPVerification from './src/screen/OTPVerification/index';
 
 
 const MainStack = createNativeStackNavigator();
@@ -36,6 +38,8 @@ class App extends Component {
       />
       <MainStack.Screen name="Login" component={Login} />
       <MainStack.Screen name="Register" component={Register} />
+      <MainStack.Screen name="OTPVerification" component={OTPVerification} />
+      <MainStack.Screen name="ForgotPassword" component={ForgotPassword} />
     </MainStack.Navigator>
   );
 

@@ -2,9 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_KEY = 'api_key';
 const USER_DETAILS = 'user_details';
-const CART = 'cart';
-const PRODUCTITEM = 'product_item';
-const WISHLIST = 'wishlist';
 
 export const getApiKey = async () => {
     try {

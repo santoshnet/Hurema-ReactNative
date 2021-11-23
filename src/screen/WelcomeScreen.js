@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Colors from '../theme/Colors';
 import Fonts from "../theme/Fonts";
 import AnimatedProgressWheel from 'react-native-progress-wheel';
+import AppBar from '../components/AppBar';
 
 const slides = [
   {
@@ -70,7 +71,7 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar
+        <AppBar
           backgroundColor={Colors.colorPrimary}
           barStyle="light-content"
         />

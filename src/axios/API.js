@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {getApiKey} from '../utils/LocalStorage';
-const URL = 'http://192.168.1.103:8000/';
+const URL = 'http://192.168.1.100:8000/';
 
 export const BASE_URL = URL;
 

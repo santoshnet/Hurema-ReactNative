@@ -25,3 +25,14 @@ export const userLogin = async (data) => {
     return res;
   });
 };
+
+export const userRegister = async (data) => {
+  
+  return await API({
+    method: 'POST',
+    url: 'api/v1/register',
+    data: data,
+  }).then(res => {
+    return res;
+  });
+};

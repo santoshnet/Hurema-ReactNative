@@ -7,11 +7,11 @@ export const USER_NAME_RULE = {
 };
 export const PASSWORD_RULE = {
   isRequired: true,
-  minLength: 8,
+  minLength: 6,
 };
 export const OTP_RULE = {
   isRequired: true,
-  minLength: 6,
+  minLength: 4,
 };
 
 export const NAME_RULE = {

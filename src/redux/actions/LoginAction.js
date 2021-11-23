@@ -8,10 +8,10 @@ export function isLoading(bool) {
   };
 }
 
-export function loginSuccess(user) {
+export function loginSuccess(userDetails) {
   return {
     type: constants.LOGIN_SUCCESS,
-    user,
+    userDetails,
   };
 }
 

@@ -19,9 +19,9 @@ function UserInput(props) {
     });
   });
   return (
-    <View style={[styles.textInputContainer, props.containerStyle,hasFocus?styles.focusContainer:props.error?styles.errorContainer:null]}>
+    <View style={[styles.textInputContainer, props.containerStyle,props.error?styles.errorContainer:hasFocus?styles.focusContainer:null]}>
       <View style={{ position:'absolute' , top:-15, left:25}}>
-        <TextViewMedium style={[{ backgroundColor:Colors.white, padding: 5, color:hasFocus?Colors.colorPrimary:'#C6C6C6' },props.placeholderTextColor]}>{props.label}</TextViewMedium>
+        <TextViewMedium style={[{ backgroundColor:Colors.white, padding: 5, color:props.error?Colors.red:hasFocus?Colors.colorPrimary:'#C6C6C6' },props.placeholderTextColor]}>{props.label}</TextViewMedium>
       </View>
      
       <TextInput
