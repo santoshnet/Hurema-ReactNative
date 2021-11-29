@@ -14,12 +14,13 @@ import Card from '../components/Card';
 import Row from '../components/Row';
 import TextViewMedium from './../components/CustomText/TextViewMedium';
 import TextViewLight from './../components/CustomText/TextViewLight';
+import TextViewRegular from './../components/CustomText/TextViewRegular';
 
 class PreRegisterScreen extends Component {
   render() {
     return (
       <Column>
-        <AppBar translucent statusBarStyle="dark-content" />
+        <AppBar/>
         <LinearGradient
           colors={['#FEFDFB', '#DBE0FF']}
           start={{x: 0, y: 0}}
@@ -44,15 +45,15 @@ class PreRegisterScreen extends Component {
                 <Row style={{alignItems: 'center'}}>
                   <ImageView
                     src={OfficeBuilding}
-                    style={{width: 50, height: 50}}
+                    style={{width: 40, height: 40}}
                   />
                   <Column style={{marginLeft: 10}}>
                     <TextViewMedium>
                       Business Owner / Admin / HR{' '}
                     </TextViewMedium>
-                    <TextViewLight style={{fontSize: 12, marginTop: 5}}>
+                    <TextViewRegular style={{fontSize: 10, marginTop: 5}}>
                       Register your company & start attendance{' '}
-                    </TextViewLight>
+                    </TextViewRegular>
                   </Column>
                 </Row>
               </TouchableOpacity>
@@ -62,15 +63,15 @@ class PreRegisterScreen extends Component {
                 <Row style={{alignItems: 'center'}}>
                   <ImageView
                     src={Employee}
-                    style={{width: 50, height: 50}}
+                    style={{width: 40, height: 40}}
                   />
                   <Column style={{marginLeft: 10}}>
                     <TextViewMedium>
                      Employee
                     </TextViewMedium>
-                    <TextViewLight style={{fontSize: 12, marginTop: 5}}>
+                    <TextViewRegular style={{fontSize: 10, marginTop: 5}}>
                       Login your account & start marking attendance
-                    </TextViewLight>
+                    </TextViewRegular>
                   </Column>
                 </Row>
               </TouchableOpacity>

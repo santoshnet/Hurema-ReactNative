@@ -71,10 +71,7 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <AppBar
-          backgroundColor={Colors.colorPrimary}
-          barStyle="light-content"
-        />
+        <AppBar/>
         <AppIntroSlider
           renderItem={this._renderItem}
           data={slides}

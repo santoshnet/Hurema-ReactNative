@@ -32,13 +32,26 @@ class SplashScreen extends Component {
     // Preload data from an external API
     // Preload data using AsyncStorage
     const data = await this.performTimeConsumingTask();
-    const user = await getUserDetails();
+    const userDetails = await getUserDetails();
     if (data !== null) {
-      if (user !== null) {
-        if (user.phone_verified) {
-          this.props.navigation.replace('Home');
+      if (userDetails !== null) {
+        if (userDetails.user.active) {
+          if (
+            userDetails.user.company_id === null &&
+            userDetails.role.id === 1
+          ) {
+            this.props.navigation.navigate('Company');
+          } else if (userDetails.user.company_id === null) {
+            Toast.show(
+              'Please contact your administrator to add his/her company',
+              Toast.LONG,
+            );
+            this.props.navigation.replace('WelcomeScreen');
+          } else {
+            this.props.navigation.replace("HomeScreen");
+          }
         } else {
-          this.props.navigation.replace('Login');
+          this.props.navigation.replace('OTPVerification');
         }
       } else {
         this.props.navigation.replace('WelcomeScreen');

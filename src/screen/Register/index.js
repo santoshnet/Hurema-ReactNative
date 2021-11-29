@@ -111,6 +111,7 @@ class Register extends Component {
             label="Email"
             error={this.state.emailError}
             value={this.state.email}
+            keyboardType={"email-address"}
             onChangeText={email => {
               this.setState({
                 email,

@@ -27,10 +27,37 @@ export const userLogin = async (data) => {
 };
 
 export const userRegister = async (data) => {
-  
   return await API({
     method: 'POST',
     url: 'api/v1/register',
+    data: data,
+  }).then(res => {
+    return res;
+  });
+};
+
+export const resendActivationCode = async () => {
+  return await API({
+    method: 'GET',
+    url: 'api/v1/resend-verification',
+  }).then(res => {
+    return res;
+  });
+};
+
+export const verifyOTP = async (code) => {
+  return await API({
+    method: 'GET',
+    url: `api/v1/register/activate/${code}`,
+  }).then(res => {
+    return res;
+  });
+};
+
+export const createCompany = async (data) => {
+  return await API({
+    method: 'POST',
+    url: 'api/v1/company',
     data: data,
   }).then(res => {
     return res;

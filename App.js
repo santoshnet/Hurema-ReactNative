@@ -11,6 +11,9 @@ import store from './src/redux/store';
 import { Provider } from 'react-redux';
 import ForgotPassword from './src/screen/ForgotPassword/index';
 import OTPVerification from './src/screen/OTPVerification/index';
+import Company from './src/screen/Company/index';
+import HomeScreen from './src/screen/HomeScreen';
+
 
 
 const MainStack = createNativeStackNavigator();
@@ -40,6 +43,8 @@ class App extends Component {
       <MainStack.Screen name="Register" component={Register} />
       <MainStack.Screen name="OTPVerification" component={OTPVerification} />
       <MainStack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <MainStack.Screen name="Company" component={Company} />
+      <MainStack.Screen name="HomeScreen" component={HomeScreen} />
     </MainStack.Navigator>
   );
 
