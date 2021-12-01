@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {companyCreate} from '../../redux/actions/CompanyAction';
+
 import {View, StyleSheet, Alert} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Column from '../../components/Column';
 import Header from '../../components/Header';
 import {Colors} from '../../theme';
 import TextViewBold from './../../components/CustomText/TextViewBold';
-import {getUserDetails} from '../../utils/LocalStorage';
+import {getUserDetails, setUserDetails} from '../../utils/LocalStorage';
 import UserInput from './../../components/UserInput';
 import {ScrollView} from 'react-native-gesture-handler';
 import Validator from '../../utils/Validator/Validator';
@@ -23,6 +26,7 @@ class Company extends Component {
 
   async componentDidMount() {
     let userDetails = await getUserDetails();
+    console.log(userDetails);
     this.setState({
       userDetails: userDetails,
       name: '',
@@ -37,7 +41,7 @@ class Company extends Component {
   }
 
   saveCompany=()=>{
-   const {name,email,phone,address,map_url}=this.state;
+   const {name,email,phone,address,userDetails}=this.state;
    this.setState({nameError:false,emailError: false, phoneError:false});
    if (!Validator(name, DEFAULT_RULE)) {
     this.setState({
@@ -64,6 +68,28 @@ class Company extends Component {
       phoneError: true,
     });
     return;
+  }else{
+    const data = {
+      name: name,
+      email: email,
+      phone: phone,
+      address: address
+    };
+
+    this.props.companyCreate(data).then(res => {
+      const {company, error} = this.props;
+      let userData = userDetails;
+      if(company){
+       console.log(company);
+       userData.user['company']=company;
+       console.log(userData);
+       setUserDetails(userData);
+       this.props.navigation.navigate("HomeScreen");
+      }else{
+        console.log(error);
+      }
+    });
+
   }
  
     
@@ -133,16 +159,7 @@ class Company extends Component {
                   });
                 }}
               />
-              <UserInput
-                placeholder="Enter Map URL (Optional)"
-                label="Google Map"
-                value={this.state.map_url}
-                onChangeText={map_url => {
-                  this.setState({
-                    map_url,
-                  });
-                }}
-              />
+              
               <LoadingButton
               title="Save Company"
               loading={this.props.isLoading}
@@ -169,4 +186,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Company;
+const mapStateToProps = state => ({
+  isLoading: state.CompanyReducer.isLoading,
+  company: state.CompanyReducer.company,
+  error: state.CompanyReducer.error,
+});
+
+const mapDispatchToProps = dispatch => ({
+  companyCreate: data => dispatch(companyCreate(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Company);
+
+

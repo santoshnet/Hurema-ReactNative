@@ -14,10 +14,11 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import Strings from '../theme/Strings';``
 import {getUserDetails, logout} from '../utils/LocalStorage';
-import {act} from 'react-test-renderer';
-
+import Column from './../components/Column/index';
+import ProfileImage from '../assets/images/profile_image.png';
+import TextViewMedium from './../components/CustomText/TextViewMedium';
+import TextViewRegular from './../components/CustomText/TextViewRegular';
 export default class CustomSidebarMenu extends Component {
   constructor() {
     super();
@@ -25,8 +26,7 @@ export default class CustomSidebarMenu extends Component {
       user: null,
     };
     //Setting up the Main Top Large Image of the Custom Sidebar
-    this.proileImage =
-      'https://aboutreact.com/wp-content/uploads/2018/07/sample_img.png';
+    this.proileImage = ProfileImage;
 
     this.items = [
       {
@@ -84,8 +84,8 @@ export default class CustomSidebarMenu extends Component {
   }
 
   async componentDidMount() {
-    let user = await getUserDetails();
-    this.setState({user: user});
+    let userDetails = await getUserDetails();
+    this.setState({user: userDetails.user});
   }
 
   logoutUser = () => {
@@ -100,8 +100,8 @@ export default class CustomSidebarMenu extends Component {
     );
   };
 
-  getActiveRouteState = (name) => {
-    active = false;
+  getActiveRouteState = name => {
+    let active = false;
     if (this.props.state !== undefined) {
       let activeIndex = this.props.state.index;
       let activeRouteName = this.props.state.routes[activeIndex].name;
@@ -117,13 +117,15 @@ export default class CustomSidebarMenu extends Component {
       <View style={styles.sideMenuContainer}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.profileContainer}>
-            <Image
-              source={require('../assets/images/user.png')}
-              style={styles.sideMenuProfileIcon}
-            />
-            {this.state.user !== null ? (
-              <Text style={styles.title}>{this.state.user.name}</Text>
-            ) : null}
+            <Column style={styles.detailsContainer}>
+              <Image source={ProfileImage} style={styles.sideMenuProfileIcon} />
+              {this.state.user !== null ? (
+                <Column style={{ alignItems:'center' }}>
+                  <TextViewMedium>{this.state.user.name}</TextViewMedium>
+                  <TextViewRegular style={{ fontSize:14 }}>{this.state.user.email}</TextViewRegular>
+                </Column>
+              ) : null}
+            </Column>
           </View>
 
           <View
@@ -217,9 +219,9 @@ const styles = StyleSheet.create({
   },
   sideMenuProfileIcon: {
     resizeMode: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
+    width: 80,
+    height: 80,
+    borderRadius: 80 / 2,
   },
   title: {
     fontFamily: Fonts.primarySemiBold,
@@ -230,15 +232,27 @@ const styles = StyleSheet.create({
 
   profileContainer: {
     width: '100%',
-    height: 80,
-    marginTop: BAR_HEIGHT,
+    height: 200,
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.iconBGd,
-    paddingLeft: 20,
-    paddingRight: 20,
+    flexDirection: 'column',
+    backgroundColor: Colors.colorPrimary,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    marginBottom: 10,
   },
+  detailsContainer: {
+    width: '100%',
+    height: 150,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.white,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    marginBottom: 10,
+  },
+
   bottomContainer: {
     flexDirection: 'row',
     alignItems: 'center',

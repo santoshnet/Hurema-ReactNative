@@ -6,7 +6,7 @@ const initialState = {
     error:undefined
 };
 
-export function LoginReducer(state = initialState, action) {
+export function CompanyReducer(state = initialState, action) {
   switch (action.type) {
     case constants.COMPANY_REQUEST:
       return {

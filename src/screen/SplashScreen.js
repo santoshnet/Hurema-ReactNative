@@ -36,8 +36,8 @@ class SplashScreen extends Component {
     if (data !== null) {
       if (userDetails !== null) {
         if (userDetails.user.active) {
-          if (
-            userDetails.user.company_id === null &&
+          if (userDetails.user.company && 
+            userDetails.user.company === null &&
             userDetails.role.id === 1
           ) {
             this.props.navigation.navigate('Company');

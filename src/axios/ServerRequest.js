@@ -63,3 +63,23 @@ export const createCompany = async (data) => {
     return res;
   });
 };
+
+export const forgotPassword = async (data) => {
+  return await API({
+    method: 'POST',
+    url: 'api/v1/forgot-password',
+    data: data,
+  }).then(res => {
+    return res;
+  });
+};
+
+export const resetPassword = async (data) => {
+  return await API({
+    method: 'POST',
+    url: 'api/v1/reset-password',
+    data: data,
+  }).then(res => {
+    return res;
+  });
+};

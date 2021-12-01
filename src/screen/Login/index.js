@@ -67,12 +67,12 @@ class Login extends Component {
         setApiKey(userDetails.token_type + ' ' + userDetails.token);
         setUserDetails(userDetails);
         if (userDetails.user.active) {
-          if (
-            userDetails.user.company_id === null &&
+          if ( userDetails.user.company &&
+            userDetails.user.company === null &&
             userDetails.role.id === 1
           ) {
             this.props.navigation.replace('Company');
-          } else if (userDetails.user.company_id === null) {
+          } else if (userDetails.user.company && userDetails.user.company === null) {
             Toast.show(
               'Please contact your administrator to add his/her company',
               Toast.LONG,

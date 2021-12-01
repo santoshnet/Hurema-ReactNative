@@ -5,15 +5,15 @@ import AppBar from '../../components/AppBar';
 import Column from '../../components/Column';
 import Header from '../../components/Header';
 import {Colors} from '../../theme';
-import TextViewBold from './../../components/CustomText/TextViewBold';
-import UserInput from './../../components/UserInput';
-import LoadingButton from './../../components/LoadingButton/index';
+import TextViewBold from '../../components/CustomText/TextViewBold';
+import UserInput from '../../components/UserInput';
+import LoadingButton from '../../components/LoadingButton/index';
 import { register } from "../../redux/actions/RegisterAction";
 import Validator from '../../utils/Validator/Validator';
 import {DEFAULT_RULE, EMAIL_RULE, PASSWORD_RULE} from '../../utils/Validator/rule';
 import Toast from 'react-native-simple-toast';
 import TextViewMedium from '../../components/CustomText/TextViewMedium';
-import { setUserDetails,setApiKey } from './../../utils/LocalStorage';
+import { setUserDetails,setApiKey } from '../../utils/LocalStorage';
 
 class Register extends Component {
   constructor(props) {
